@@ -1,0 +1,25 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t steelman72/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true steelman72/react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t steelman72/multi-client ./client
+  - docker build -t steelman72/multi-nginx ./nginx
+  - docker build -t steelman72/multi-server ./server
+  - docker build -t steelman72/multi-worker ./worker
+
+  # Push images to dockerhub
+  # Enter docker credentials
+  # Using env vars entered in Travis project
+  - echo "$DOCKER_PASSWORD" | docker login --u "DOCKER_ID" --password-stdin
+  - docker push steelman72/multi-client
+  - docker push steelman72/multi-nginx
+  - docker push steelman72/multi-server
+  - docker push steelman72/multi-worker
