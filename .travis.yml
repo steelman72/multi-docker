@@ -18,7 +18,7 @@ after_success:
   # Push images to dockerhub
   # Enter docker credentials
   # Using env vars entered in Travis project
-  - echo "$DOCKER_PASSWORD" | docker login --u "DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login --u "$DOCKER_ID" --password-stdin
   - docker push steelman72/multi-client
   - docker push steelman72/multi-nginx
   - docker push steelman72/multi-server
