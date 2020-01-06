@@ -23,3 +23,15 @@ after_success:
   - docker push shankarar/multi-nginx
   - docker push shankarar/multi-server
   - docker push shankarar/multi-worker
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "multi-docker"
+  env: "MultiDocker-env-1"
+  bucket_name: "elasticbeanstalk-ap-south-1-637220785361"
+  bucket_path: "docker_multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
