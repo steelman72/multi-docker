@@ -5,28 +5,28 @@
             "name": "client",
             "image": "shankarar/multi-client",
             "hostname": "client",
-            "memory": 256,
+            "memory": 128,
             "essential": false
         },
         {
             "name": "server",
             "image": "shankarar/multi-server",
             "hostname": "api",
-            "memory": 256,
+            "memory": 128,
             "essential": false
         },
         {
             "name": "worker",
             "image": "shankarar/multi-worker",
             "hostname": "worker",
-            "memory": 256,
+            "memory": 128,
             "essential": false
         },
         {
             "name": "nginx",
             "image": "shankarar/multi-nginx",
             "hostname": "nginx",
-            "memory": 256,
+            "memory": 128,
             "essential": true,
             "portMappings": [
                 {
